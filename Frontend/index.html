@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Summary Project</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-time" id="timeDisplay">00:00</div>
+
+      <div class="header-center">
+        
+        <img src="assets/book-icon-2.png" alt="Book icon" class="header-book-icon" id="bookButton" />
+      </div>
+
+      <div class="header-right">
+        <button class="logout-button" id="logoutButton" type="button">
+          <img src="assets/logout-icon.png" alt="Logout" class="logout-icon" />
+        </button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="screen auth-screen" id="authScreen">
+        <div class="auth-wrapper">
+          <p class="error-message" id="errorMessage"></p>
+
+          <div class="auth-box">
+            <div class="auth-tabs">
+              <button class="tab-button active" id="loginTab" type="button">Log in</button>
+              <button class="tab-button" id="signupTab" type="button">Sign up</button>
+            </div>
+
+            <form class="auth-form" id="authForm">
+              <label for="username" class="auth-label">Name:</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="auth-input"
+                placeholder=""
+              />
+
+              <label for="password" class="auth-label">Password:</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="auth-input"
+                placeholder=""
+              />
+
+              <button type="submit" class="submit-button" id="submitButton">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen success-screen hidden" id="successScreen">
+        <div class="success-box">
+          <img
+            src="assets/success-check.png"
+            alt="Success"
+            class="success-icon"
+          />
+        </div>
+      </section>
+
+      <section class="screen main-screen hidden" id="mainScreen">
+  <div class="main-box">
+    <div class="book-text hidden" id="bookText">
+      Здесь появится краткое содержание произведения.
+    </div>
+  </div>
+</section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

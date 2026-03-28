@@ -1,0 +1,260 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #efefef;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* HEADER */
+
+.header {
+  position: relative;
+  background-color: #4697b1;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+}
+
+.header-time {
+  color: #ffffff;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+
+
+
+
+.header-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95px;
+  height: 95px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-book-icon {
+  display: block;
+  max-width: 72px;
+  max-height: 72px;
+  width: auto;
+  height: auto;
+}
+
+
+
+.header-right {
+  margin-left: auto;
+}
+
+.logout-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.logout-icon {
+  width: 48px;
+  height: auto;
+  display: block;
+}
+
+/* MAIN */
+
+.main-content {
+  min-height: calc(100vh - 110px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen {
+  width: 100%;
+  min-height: calc(100vh - 110px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* AUTH SCREEN */
+
+.auth-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  margin-top: -30px;
+}
+
+.error-message {
+  min-height: 52px;
+  color: #ff1e1e;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: left;
+  width: 320px;
+}
+
+.auth-box {
+  width: 300px;
+  background-color: #4697b1;
+  border-radius: 28px;
+  padding: 26px 22px 30px;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.14);
+}
+
+.auth-tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px 14px;
+  margin-bottom: 26px;
+}
+
+.tab-button {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  padding-bottom: 4px;
+}
+
+.tab-button.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  width: 58px;
+  height: 3px;
+  background-color: #8ce39b;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-label {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.auth-input {
+  width: 100%;
+  height: 31px;
+  border: none;
+  border-radius: 5px;
+  background: #f1f1f1;
+  padding: 0 10px;
+  font-size: 14px;
+  margin-bottom: 28px;
+  outline: none;
+}
+
+.submit-button {
+  width: 106px;
+  height: 31px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 8px;
+  background-color: #8ce39b;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* SUCCESS SCREEN */
+
+.success-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-icon {
+  width: 130px;
+  height: auto;
+  display: block;
+}
+
+/* MAIN SCREEN */
+
+.main-screen {
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 210px;
+}
+
+.main-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-button.active {
+  box-shadow: 0 0 0 6px #39e36d;
+}
+
+.main-book-icon {
+  width: 100px;
+  height: auto;
+  display: block;
+}
+
+.book-text {
+  margin-top: 5px;
+  width: 570px;
+  color: #111111;
+  font-size: 18px;
+  line-height: 1.45;
+  font-weight: 700;
+  text-align: left;
+    white-space: pre-line;
+}
+
+#bookButton {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.header-center.active {
+  border: 5px solid #39e36d;
+}
