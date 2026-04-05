@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -37,5 +37,5 @@ jobs:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/book_summary_db?schema=public
         run: npx prisma generate
 
-      - name: Check server syntax
-        run: node --check server.js
+      - name: Run tests
+        run: npm test
