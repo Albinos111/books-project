@@ -9,7 +9,7 @@ const app = express();
 const prisma = new PrismaClient();
 
 // Порт сервера
-const PORT = 5000;
+// const PORT = 5000;
 
 // Middleware
 app.use(cors());
