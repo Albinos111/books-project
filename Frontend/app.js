@@ -16,29 +16,17 @@ const bookCircle = document.querySelector(".header-center");
 const bookText = document.getElementById("bookText");
 const timeDisplay = document.getElementById("timeDisplay");
 
+const API_BASE_URL = "https://books-project-backend.onrender.com";
+
 // Режим формы: login или signup
 let currentMode = "login";
 
 // Флаг авторизации
 let isAuthorized = false;
 
-
-
-// --------------------
-// ВРЕМЯ
-// --------------------
-
-/*function updateTime() {
-  const now = new Date();
-  const hours = String(now.getHours()).padStart(2, "0");
-  const minutes = String(now.getMinutes()).padStart(2, "0");
-  timeDisplay.textContent = `${hours}:${minutes}`;
-}*/
-
-
 async function updateTime() {
   try {
-    const response = await fetch("http://localhost:5000/api/time");
+    const response = await fetch(`${API_BASE_URL}/api/time`);
     const data = await response.json();
 
     if (!response.ok) {
@@ -58,71 +46,6 @@ async function updateTime() {
 updateTime();
 setInterval(updateTime, 60000);
 
-// --------------------
-// ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ
-// --------------------
-function showScreen(screen) {
-  authScreen.classList.add("hidden");
-  successScreen.classList.add("hidden");
-  mainScreen.classList.add("hidden");
-
-  screen.classList.remove("hidden");
-}
-
-function resetMainScreen() {
-  bookCircle.classList.remove("active");
-  bookText.classList.add("hidden");
-  bookText.textContent = "";
-}
-
-function setActiveTab(mode) {
-  currentMode = mode;
-  errorMessage.textContent = "";
-
-  if (mode === "login") {
-    loginTab.classList.add("active");
-    signupTab.classList.remove("active");
-  } else {
-    signupTab.classList.add("active");
-    loginTab.classList.remove("active");
-  }
-}
-
-function showError(message) {
-  errorMessage.textContent = message;
-}
-
-function clearForm() {
-  usernameInput.value = "";
-  passwordInput.value = "";
-}
-
-function handleSuccessAuth() {
-  isAuthorized = true;
-  errorMessage.textContent = "";
-  clearForm();
-  resetMainScreen();
-  showScreen(successScreen);
-
-  setTimeout(() => {
-    showScreen(mainScreen);
-  }, 2000);
-}
-
-// --------------------
-// ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
-// --------------------
-loginTab.addEventListener("click", () => {
-  setActiveTab("login");
-});
-
-signupTab.addEventListener("click", () => {
-  setActiveTab("signup");
-});
-
-// --------------------
-// ОТПРАВКА ФОРМЫ НА BACKEND
-// --------------------
 authForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -146,8 +69,8 @@ authForm.addEventListener("submit", async (event) => {
 
   const url =
     currentMode === "signup"
-      ? "http://localhost:5000/api/auth/register"
-      : "http://localhost:5000/api/auth/login";
+      ? `${API_BASE_URL}/api/auth/register`
+      : `${API_BASE_URL}/api/auth/login`;
 
   try {
     const response = await fetch(url, {
@@ -172,16 +95,13 @@ authForm.addEventListener("submit", async (event) => {
   }
 });
 
-// --------------------
-// КНОПКА КНИГИ
-// --------------------
 bookButton.addEventListener("click", async () => {
   if (!isAuthorized) {
     return;
   }
 
   try {
-    const response = await fetch("http://localhost:5000/api/work/random");
+    const response = await fetch(`${API_BASE_URL}/api/work/random`);
     const data = await response.json();
 
     if (!response.ok) {
@@ -200,16 +120,4 @@ bookButton.addEventListener("click", async () => {
     bookText.classList.remove("hidden");
     bookText.textContent = "Сервер недоступен или произошла ошибка";
   }
-});
-
-// --------------------
-// ВЫХОД
-// --------------------
-logoutButton.addEventListener("click", () => {
-  isAuthorized = false;
-  errorMessage.textContent = "";
-  clearForm();
-  resetMainScreen();
-  setActiveTab("login");
-  showScreen(authScreen);
 });
