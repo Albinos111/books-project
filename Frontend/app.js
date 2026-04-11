@@ -15,13 +15,11 @@ const bookButton = document.getElementById("bookButton");
 const bookCircle = document.querySelector(".header-center");
 const bookText = document.getElementById("bookText");
 const timeDisplay = document.getElementById("timeDisplay");
+const submitButton = document.getElementById("submitButton");
 
 const API_BASE_URL = "https://books-project-backend.onrender.com";
 
-// Режим формы: login или signup
 let currentMode = "login";
-
-// Флаг авторизации
 let isAuthorized = false;
 
 async function updateTime() {
@@ -43,8 +41,63 @@ async function updateTime() {
     timeDisplay.textContent = "--:--";
   }
 }
-updateTime();
-setInterval(updateTime, 60000);
+
+function showScreen(screen) {
+  authScreen.classList.add("hidden");
+  successScreen.classList.add("hidden");
+  mainScreen.classList.add("hidden");
+  screen.classList.remove("hidden");
+}
+
+function resetMainScreen() {
+  bookCircle.classList.remove("active");
+  bookText.classList.add("hidden");
+  bookText.textContent = "";
+}
+
+function clearForm() {
+  usernameInput.value = "";
+  passwordInput.value = "";
+}
+
+function showError(message) {
+  errorMessage.textContent = message;
+}
+
+function setActiveTab(mode) {
+  currentMode = mode;
+  errorMessage.textContent = "";
+
+  if (mode === "login") {
+    loginTab.classList.add("active");
+    signupTab.classList.remove("active");
+    submitButton.textContent = "Log in";
+  } else {
+    signupTab.classList.add("active");
+    loginTab.classList.remove("active");
+    submitButton.textContent = "Sign up";
+  }
+}
+
+function handleSuccessAuth() {
+  isAuthorized = true;
+  errorMessage.textContent = "";
+  clearForm();
+  resetMainScreen();
+  showScreen(successScreen);
+
+  setTimeout(() => {
+    showScreen(mainScreen);
+  }, 2000);
+}
+
+loginTab.addEventListener("click", () => {
+  setActiveTab("login");
+});
+
+signupTab.addEventListener("click", () => {
+  setActiveTab("signup");
+});
 
 authForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -122,6 +175,16 @@ bookButton.addEventListener("click", async () => {
   }
 });
 
-function showError(message) {
-  errorMessage.textContent = message;
-}
+logoutButton.addEventListener("click", () => {
+  isAuthorized = false;
+  errorMessage.textContent = "";
+  clearForm();
+  resetMainScreen();
+  setActiveTab("login");
+  showScreen(authScreen);
+});
+
+updateTime();
+setInterval(updateTime, 60000);
+setActiveTab("login");
+showScreen(authScreen);
