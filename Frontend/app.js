@@ -121,3 +121,7 @@ bookButton.addEventListener("click", async () => {
     bookText.textContent = "Сервер недоступен или произошла ошибка";
   }
 });
+
+function showError(message) {
+  errorMessage.textContent = message;
+}
